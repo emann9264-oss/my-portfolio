@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Eman | Portfolio - Web Developer</title>
+    <meta name="description" content="Eman - Front-End Web Developer Portfolio. Clean, modern, and fully responsive across all devices.">
+
+    <!-- 1. Local Bootstrap CSS -->
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- 2. CDN Fallbacks -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- 3. Harmonious & Fully Responsive Styles -->
+    <style>
+        :root {
+            --primary: #0dcaf0;
+            --primary-dark: #0aa2c0;
+            --accent: #3b82f6;
+            --dark-bg: #0b1120;
+            --dark-surface: #131d31;
+            --dark-card: #1e293b;
+            --light-bg: #f8fafc;
+            --light-card: #ffffff;
+            --text-dark: #0f172a;
+            --text-light: #f8fafc;
+            --text-muted: #64748b;
+            --gradient-hero: linear-gradient(135deg, #0b1120 0%, #111e38 60%, #0e1726 100%);
+            --gradient-accent: linear-gradient(135deg, #0dcaf0 0%, #2563eb 100%);
+            --radius-md: 14px;
+            --radius-lg: 20px;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 75px;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            line-height: 1.65;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navbar */
+        .navbar-custom {
+            background-color: rgba(11, 17, 32, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-size: 1.35rem;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 0.9rem !important;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #ffffff !important;
+            background-color: rgba(13, 202, 240, 0.15);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: var(--gradient-hero);
+            min-height: calc(100vh - 65px);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(13, 202, 240, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.15rem, 2.5vw, 1.6rem);
+            font-weight: 600;
+        }
+
+        .hero-desc {
+            font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 540px;
+        }
+
+        /* Profile Image Presentation */
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .profile-glow {
+            position: absolute;
+            inset: -8px;
+            background: conic-gradient(from 180deg at 50% 50%, #0dcaf0 0deg, #2563eb 180deg, #0dcaf0 360deg);
+            border-radius: 50%;
+            filter: blur(12px);
+            opacity: 0.6;
+            animation: pulse-glow 4s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(0.97); opacity: 0.45; }
+            100% { transform: scale(1.03); opacity: 0.75; }
+        }
+
+        .profile-photo {
+            position: relative;
+            z-index: 2;
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #0dcaf0;
+            background-color: #0b1120;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+            transition: transform 0.35s ease, border-color 0.35s ease;
+            cursor: pointer;
+            display: block;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.04);
+            border-color: #ffffff;
+        }
+
+        .profile-badge {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            white-space: nowrap;
+            background: rgba(11, 17, 32, 0.92);
+            border: 1px solid rgba(13, 202, 240, 0.4);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Cards */
+        .custom-card {
+            background-color: var(--light-card);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: var(--radius-md);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.09);
+            border-color: rgba(13, 202, 240, 0.3);
+        }
+
+        /* Skill Cards */
+        .skill-card {
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border-radius: var(--radius-md);
+        }
+
+        .skill-icon-wrap {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover .skill-icon-wrap {
+            transform: scale(1.12) rotate(4deg);
+        }
+
+        /* Project Cards */
+        .project-preview {
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 3.2rem;
+            border-top-left-radius: var(--radius-md);
+            border-top-right-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-preview {
+            filter: brightness(1.08);
+        }
+
+        .preview-gradient-1 { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); }
+        .preview-gradient-2 { background: linear-gradient(135deg, #0f172a 0%, #334155 100%); }
+        .preview-gradient-3 { background: linear-gradient(135deg, #059669 0%, #047857 100%); }
+
+        /* Icon Helper */
+        .app-icon {
+            display: inline-block;
+            width: 1.15em;
+            height: 1.15em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+        }
+
+        .app-icon-lg {
+            width: 2.3em;
+            height: 2.3em;
+        }
+
+        /* Buttons */
+        .btn {
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 0.65rem 1.4rem;
+            transition: all 0.25s ease;
+        }
+
+        .btn-info {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #0b1120;
+        }
+
+        .btn-info:hover {
+            background-color: #38bdf8;
+            border-color: #38bdf8;
+            color: #0b1120;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(13, 202, 240, 0.35);
+        }
+
+        .btn-outline-info {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-outline-info:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #0b1120;
+            transform: translateY(-2px);
+        }
+
+        /* Form Controls */
+        .form-control {
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.2);
+        }
+
+        /* Back to top button */
+        #backToTop {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #0b1120;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #backToTop:hover {
+            background-color: #38bdf8;
+            transform: translateY(-3px);
+        }
+
+        /* ================= RESPONSIVE MEDIA QUERIES ================= */
+
+        /* Tablets & Mobile */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: rgba(15, 23, 42, 0.98);
+                padding: 1rem;
+                border-radius: 12px;
+                margin-top: 0.75rem;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .navbar-nav .nav-link {
+                padding: 0.65rem 1rem !important;
+                margin-bottom: 4px;
+            }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 767.98px) {
+            .hero-section {
+                padding-top: 3.5rem;
+                padding-bottom: 3.5rem;
+                text-align: center;
+            }
+            .profile-photo {
+                width: 200px;
+                height: 200px;
+                border-width: 3.5px;
+            }
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .btn-lg {
+                padding: 0.6rem 1.25rem;
+                font-size: 1rem;
+            }
+            .project-preview {
+                height: 140px;
+                font-size: 2.6rem;
+            }
+        }
+
+        /* Small Phones (< 380px) */
+        @media (max-width: 379.98px) {
+            .profile-photo {
+                width: 165px;
+                height: 165px;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .btn {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            .skill-card {
+                padding: 1rem 0.5rem;
+            }
+            .skill-icon-wrap {
+                width: 54px;
+                height: 54px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="#home">
+            <span class="text-info me-1">Eman</span>
+            <span class="fw-normal text-white-50">Portfolio</span>
+        </a>
+
+        <!-- Mobile Hamburger Toggler -->
+        <button class="navbar-toggler border-0 shadow-none"
+                type="button"
+                id="navTogglerBtn"
+                data-bs-toggle="collapse"
+                data-bs-target="#navMenu"
+                aria-controls="navMenu"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navMenu">
+            <div class="navbar-nav ms-auto align-items-lg-center">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                
+                <!-- CV / السيرة الذاتية Modal Trigger Button -->
+                <button type="button" 
+                        class="btn btn-outline-info btn-sm ms-lg-2 mt-2 mt-lg-0 px-3 py-2 fw-semibold"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#cvModal">
+                    <svg class="app-icon me-1" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.5 9a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5"/></svg>
+                    CV / السيرة الذاتية
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ================= HERO / HOME SECTION ================= -->
+<section id="home" class="hero-section text-white py-5">
+    <div class="container py-4">
+        <div class="row align-items-center g-4 flex-column-reverse flex-md-row">
+            
+            <!-- Left Column: Introduction & CTAs -->
+            <div class="col-md-7 text-center text-md-start">
+                <div class="d-inline-flex align-items-center gap-2 badge bg-info text-dark mb-3 px-3 py-2 fw-bold">
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    <span>Available For Projects</span>
+                </div>
+
+                <h1 class="hero-title mb-2">
+                    Hi, I'm <span class="text-info">Eman</span>
+                </h1>
+
+                <h2 class="hero-subtitle text-info mb-3">
+                    Web Developer &amp; UI Designer
+                </h2>
+
+                <p class="hero-desc mb-4">
+                    I build modern, responsive, and high-performance websites using HTML, CSS, Bootstrap, and JavaScript. Passionate about clean code and pixel-perfect design across all devices.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+                    <a href="#projects" class="btn btn-info btn-lg px-4">
+                        <svg class="app-icon me-1" viewBox="0 0 16 16"><path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5"/></svg>
+                        My Projects
+                    </a>
+                    
+                    <a href="#contact" class="btn btn-outline-light btn-lg px-4">
+                        Contact Me
+                    </a>
+
+                    <!-- CV Quick Action -->
+                    <button type="button" 
+                            class="btn btn-outline-info btn-lg px-4"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#cvModal">
+                        <svg class="app-icon me-1" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/></svg>
+                        CV / سيرة ذاتية
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column: Profile Photo with Glowing Halo & Lightbox Trigger -->
+            <div class="col-md-5 text-center">
+                <div class="profile-container" title="Click to view full photo / اضغط لتكبير الصورة">
+                    <div class="profile-glow"></div>
+                    
+                    <!-- High-Res Profile Image with seamless multi-source fallbacks -->
+                    <img id="mainProfilePhoto"
+                         src="images/profile_cropped.png"
+                         onerror="this.onerror=null; this.src='profile.png'; this.onerror=function(){this.src='profile.jpg'; this.onerror=function(){this.src='images/profile.jpg'; this.onerror=function(){this.src='IMG-20261002-WA0085.jpg';};};};"
+                         alt="Eman Profile"
+                         class="profile-photo"
+                         data-bs-toggle="modal"
+                         data-bs-target="#photoModal">
+                    
+                    <span class="badge profile-badge px-3 py-2 rounded-pill text-info">
+                        <svg class="app-icon me-1" viewBox="0 0 16 16"><path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0m6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0"/></svg>
+                        Creative Developer
+                    </span>
+                </div>
+                
+                <p class="small text-white-50 mt-3 mb-0">
+                    <svg class="app-icon me-1" viewBox="0 0 16 16"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/></svg>
+                    Click photo to zoom / اضغط لعرض الصورة بوضوح
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= ABOUT SECTION ================= -->
+<section id="about" class="py-5">
+    <div class="container py-3">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark">
+                About <span class="text-primary">Me</span>
+            </h2>
+            <p class="text-secondary">
+                Get to know my background and passion
+            </p>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+            
+            <!-- Bio Card -->
+            <div class="col-md-6">
+                <div class="custom-card h-100 p-4 p-lg-5">
+                    <div class="text-primary mb-3">
+                        <svg class="app-icon app-icon-lg" viewBox="0 0 16 16"><path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/><path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.55a2.5 2.5 0 0 1-.05-.5V11a3.5 3.5 0 0 1 3.5-3.5h7A3.5 3.5 0 0 1 16 11v2.5a2.5 2.5 0 0 1-.05.5h.55a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z"/></svg>
+                    </div>
+                    <h4 class="fw-bold mb-3">Who Am I?</h4>
+                    <p class="text-secondary mb-3">
+                        I am a passionate and dedicated Web Developer who loves creating intuitive, fast, and visually appealing digital experiences.
+                    </p>
+                    <p class="text-secondary mb-3">
+                        My priority is ensuring websites look stunning and function effortlessly across every screen size — from compact smartphones to ultra-wide desktop monitors.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 pt-2">
+                        <span class="badge bg-light text-dark border px-3 py-2">💡 Problem Solver</span>
+                        <span class="badge bg-light text-dark border px-3 py-2">📱 Responsive First</span>
+                        <span class="badge bg-light text-dark border px-3 py-2">⚡ Clean Architecture</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal Details Card -->
+            <div class="col-md-6">
+                <div class="custom-card h-100 overflow-hidden">
+                    <div class="bg-primary text-white p-3 px-4">
+                        <h5 class="mb-0 fw-bold d-flex align-items-center">
+                            <svg class="app-icon me-2" viewBox="0 0 16 16"><path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/></svg>
+                            Personal Information
+                        </h5>
+                    </div>
+                    <div class="p-4 p-lg-5">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-3 d-flex align-items-center">
+                                <svg class="app-icon text-primary me-3 flex-shrink-0" viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
+                                <div>
+                                    <strong class="d-block text-dark">Name:</strong>
+                                    <span class="text-secondary">Eman</span>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex align-items-center">
+                                <svg class="app-icon text-primary me-3 flex-shrink-0" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg>
+                                <div>
+                                    <strong class="d-block text-dark">Email:</strong>
+                                    <a href="mailto:eman@gmail.com" class="text-primary text-decoration-none">eman@gmail.com</a>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex align-items-center">
+                                <svg class="app-icon text-primary me-3 flex-shrink-0" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
+                                <div>
+                                    <strong class="d-block text-dark">Location:</strong>
+                                    <span class="text-secondary">Egypt</span>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <svg class="app-icon text-primary me-3 flex-shrink-0" viewBox="0 0 16 16"><path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0m6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0"/></svg>
+                                <div>
+                                    <strong class="d-block text-dark">Role:</strong>
+                                    <span class="text-secondary">Front-End Web Developer</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= SKILLS SECTION ================= -->
+<section id="skills" class="bg-white py-5">
+    <div class="container py-3">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark">
+                My <span class="text-primary">Skills</span>
+            </h2>
+            <p class="text-secondary">
+                Core technologies I use to build modern websites
+            </p>
+        </div>
+
+        <div class="row g-3 g-md-4">
+            
+            <!-- HTML5 -->
+            <div class="col-6 col-lg-3">
+                <div class="custom-card skill-card h-100">
+                    <div class="skill-icon-wrap" style="background: rgba(220, 53, 69, 0.12);">
+                        <svg class="app-icon app-icon-lg text-danger" viewBox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z"/><text x="4" y="11" font-size="5" font-weight="bold" fill="currentColor">&lt;/&gt;</text></svg>
+                    </div>
+                    <h5 class="fw-bold mb-1">HTML5</h5>
+                    <p class="small text-muted mb-2">Semantic Structure</p>
+                    <span class="badge bg-danger px-2 py-1">Advanced</span>
+                </div>
+            </div>
+
+            <!-- CSS3 -->
+            <div class="col-6 col-lg-3">
+                <div class="custom-card skill-card h-100">
+                    <div class="skill-icon-wrap" style="background: rgba(13, 110, 253, 0.12);">
+                        <svg class="app-icon app-icon-lg text-primary" viewBox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z"/><text x="3.5" y="11" font-size="5" font-weight="bold" fill="currentColor">CSS</text></svg>
+                    </div>
+                    <h5 class="fw-bold mb-1">CSS3</h5>
+                    <p class="small text-muted mb-2">Responsive &amp; Flex/Grid</p>
+                    <span class="badge bg-primary px-2 py-1">Advanced</span>
+                </div>
+            </div>
+
+            <!-- Bootstrap 5 -->
+            <div class="col-6 col-lg-3">
+                <div class="custom-card skill-card h-100">
+                    <div class="skill-icon-wrap" style="background: rgba(13, 202, 240, 0.18);">
+                        <svg class="app-icon app-icon-lg text-info" viewBox="0 0 16 16"><path d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375z"/><path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm3.5 10.744h4.86c2.096 0 3.54-1.002 3.54-2.766 0-1.127-.686-2.003-1.768-2.31 1.004-.37 1.58-1.282 1.58-2.36 0-1.63-1.378-2.55-3.328-2.55H3.5z"/></svg>
+                    </div>
+                    <h5 class="fw-bold mb-1">Bootstrap 5</h5>
+                    <p class="small text-muted mb-2">Mobile-First UI</p>
+                    <span class="badge bg-info text-dark px-2 py-1">Proficient</span>
+                </div>
+            </div>
+
+            <!-- JavaScript -->
+            <div class="col-6 col-lg-3">
+                <div class="custom-card skill-card h-100">
+                    <div class="skill-icon-wrap" style="background: rgba(255, 193, 7, 0.18);">
+                        <svg class="app-icon app-icon-lg text-warning" viewBox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z"/><text x="5" y="11" font-size="5" font-weight="bold" fill="currentColor">JS</text></svg>
+                    </div>
+                    <h5 class="fw-bold mb-1">JavaScript</h5>
+                    <p class="small text-muted mb-2">Interactivity &amp; DOM</p>
+                    <span class="badge bg-warning text-dark px-2 py-1">Proficient</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= PROJECTS SECTION ================= -->
+<section id="projects" class="py-5">
+    <div class="container py-3">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark">
+                My <span class="text-primary">Projects</span>
+            </h2>
+            <p class="text-secondary">
+                Highlighted front-end applications &amp; websites
+            </p>
+        </div>
+
+        <div class="row g-4">
+            
+            <!-- Project 1: Student System -->
+            <div class="col-md-6 col-lg-4">
+                <div class="custom-card project-card h-100 d-flex flex-column">
+                    <div class="project-preview preview-gradient-1">
+                        <svg class="app-icon" style="width: 1.8em; height: 1.8em;" viewBox="0 0 16 16"><path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z"/><path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z"/></svg>
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-primary">Management System</span>
+                            <small class="text-muted">HTML/CSS/JS</small>
+                        </div>
+                        <h5 class="fw-bold mb-2">Student System</h5>
+                        <p class="text-secondary flex-grow-1">
+                            An intuitive system for recording student data, grades, and attendance with instant search and responsive cards.
+                        </p>
+                        <a href="#contact" class="btn btn-outline-primary mt-3 w-100">
+                            Project Details
+                            <svg class="app-icon ms-1" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Personal Website -->
+            <div class="col-md-6 col-lg-4">
+                <div class="custom-card project-card h-100 d-flex flex-column">
+                    <div class="project-preview preview-gradient-2">
+                        <svg class="app-icon" style="width: 1.8em; height: 1.8em;" viewBox="0 0 16 16"><path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5"/></svg>
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-dark">Portfolio Showcase</span>
+                            <small class="text-muted">Bootstrap 5</small>
+                        </div>
+                        <h5 class="fw-bold mb-2">Personal Portfolio</h5>
+                        <p class="text-secondary flex-grow-1">
+                            A modern personal portfolio designed to present skills, projects, and contact avenues cleanly across all devices.
+                        </p>
+                        <a href="#home" class="btn btn-outline-primary mt-3 w-100">
+                            Current Project
+                            <svg class="app-icon ms-1" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Online Store -->
+            <div class="col-md-6 col-lg-4 mx-auto">
+                <div class="custom-card project-card h-100 d-flex flex-column">
+                    <div class="project-preview preview-gradient-3">
+                        <svg class="app-icon" style="width: 1.8em; height: 1.8em;" viewBox="0 0 16 16"><path d="M8 1a2.5 2.5 0 0 0-2.5 2.5V4h5v-.5A2.5 2.5 0 0 0 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></svg>
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-success">E-Commerce</span>
+                            <small class="text-muted">Responsive UI</small>
+                        </div>
+                        <h5 class="fw-bold mb-2">Online Store</h5>
+                        <p class="text-secondary flex-grow-1">
+                            An online storefront with modern product cards, filters, interactive cart preview, and touch-optimized navigation.
+                        </p>
+                        <a href="#contact" class="btn btn-outline-primary mt-3 w-100">
+                            Project Details
+                            <svg class="app-icon ms-1" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= CONTACT SECTION ================= -->
+<section id="contact" class="hero-section text-white py-5">
+    <div class="container py-3">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">
+                Contact <span class="text-info">Me</span>
+            </h2>
+            <p class="text-white-50">
+                Have an inquiry or collaboration idea? Reach out directly.
+            </p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card border-0 shadow-lg" style="border-radius: var(--radius-lg); background-color: #ffffff;">
+                    <div class="card-body p-4 p-md-5">
+                        <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                            <div class="mb-3">
+                                <label for="senderName" class="form-label text-dark fw-semibold">
+                                    Your Name
+                                </label>
+                                <input type="text"
+                                       id="senderName"
+                                       class="form-control"
+                                       placeholder="Enter your name"
+                                       required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="senderEmail" class="form-label text-dark fw-semibold">
+                                    Your Email
+                                </label>
+                                <input type="email"
+                                       id="senderEmail"
+                                       class="form-control"
+                                       placeholder="name@example.com"
+                                       required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="senderMessage" class="form-label text-dark fw-semibold">
+                                    Your Message
+                                </label>
+                                <textarea id="senderMessage"
+                                          class="form-control"
+                                          rows="4"
+                                          placeholder="Write your message here..."
+                                          required></textarea>
+                            </div>
+
+                            <button type="submit" id="submitBtn" class="btn btn-primary w-100 py-3 fw-bold">
+                                <svg class="app-icon me-2" viewBox="0 0 16 16"><path d="M15.854.146a.5.5 0 0 1 .11.54l-5.8 14.5a.5.5 0 0 1-.928.028l-3.371-5.056-5.056-3.37A.5.5 0 0 1 .84 5.86l14.5-5.8a.5.5 0 0 1 .514.086M6.924 9.076l2.9 4.35 4.35-10.875z"/></svg>
+                                Send Message
+                            </button>
+
+                            <div id="contactAlert" class="alert alert-success mt-3 d-none mb-0" role="alert">
+                                Message sent successfully! Thank you for reaching out.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-black text-white text-center py-4 border-top border-secondary border-opacity-25">
+    <div class="container">
+        <h5 class="fw-bold mb-1">
+            <span class="text-info">Eman</span> Portfolio
+        </h5>
+        <p class="text-white-50 mb-2 small">
+            Crafted with passion &bull; Fully Responsive Across All Devices
+        </p>
+        <p class="mb-0 text-white-50 small">
+            &copy; 2026 Eman. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+
+<!-- Floating Back to Top Button -->
+<button type="button" id="backToTop" title="Scroll to top">
+    <svg class="app-icon" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/></svg>
+</button>
+
+<!-- ================= MODAL 1: PHOTO ZOOM / LIGHTBOX ================= -->
+<div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content bg-dark text-white border-0 shadow-lg" style="border-radius: var(--radius-lg); overflow: hidden;">
+            <div class="modal-header border-secondary border-opacity-25 pb-2">
+                <h5 class="modal-title fw-bold text-info" id="photoModalLabel">
+                    <svg class="app-icon me-2" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z"/></svg>
+                    Profile Photo / صورة الملف الشخصي
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-4">
+                <img src="images/profile_cropped.png" 
+                     onerror="this.onerror=null; this.src='profile.png'; this.onerror=function(){this.src='profile.jpg';};"
+                     alt="Eman Full Resolution" 
+                     class="img-fluid rounded-circle shadow" 
+                     style="max-width: 320px; border: 4px solid #0dcaf0;">
+                <h5 class="fw-bold mt-3 mb-1">Eman</h5>
+                <p class="text-white-50 small mb-0">Web Developer &amp; UI Designer</p>
+            </div>
+            <div class="modal-footer border-secondary border-opacity-25 justify-content-center">
+                <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Close / إغلاق</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= MODAL 2: CV / السيرة الذاتية ================= -->
+<div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="cvModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: var(--radius-lg); overflow: hidden;">
+            <div class="modal-header bg-dark text-white border-0 py-3">
+                <h5 class="modal-title fw-bold text-info" id="cvModalLabel">
+                    <svg class="app-icon me-2" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/></svg>
+                    Curriculum Vitae (CV) &bull; السيرة الذاتية
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4 p-md-5" id="printableCV">
+                <!-- Header -->
+                <div class="row align-items-center pb-4 mb-4 border-bottom">
+                    <div class="col-sm-8">
+                        <h2 class="fw-bold mb-1 text-primary">Eman</h2>
+                        <h5 class="text-secondary mb-2">Front-End Web Developer</h5>
+                        <div class="small text-muted d-flex flex-wrap gap-3">
+                            <span>📧 eman@gmail.com</span>
+                            <span>📍 Egypt</span>
+                            <span>💼 Available for Projects</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 text-sm-end mt-3 mt-sm-0">
+                        <img src="images/profile_cropped.png" 
+                             onerror="this.onerror=null; this.src='profile.png'; this.onerror=function(){this.src='profile.jpg';};"
+                             alt="Eman" 
+                             class="rounded-circle border border-2 border-primary" 
+                             style="width: 80px; height: 80px; object-fit: cover;">
+                    </div>
+                </div>
+
+                <!-- Professional Summary -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark border-start border-4 border-primary ps-2 mb-2">Professional Summary</h5>
+                    <p class="text-secondary small mb-0">
+                        Dedicated Front-End Web Developer skilled in HTML5, CSS3, Bootstrap 5, and JavaScript. Experienced in translating design concepts into responsive, cross-browser compatible, and accessible web experiences. Committed to writing clean code and continuous learning.
+                    </p>
+                </div>
+
+                <!-- Technical Skills -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark border-start border-4 border-primary ps-2 mb-2">Technical Skills</h5>
+                    <div class="d-flex flex-wrap gap-2 pt-1">
+                        <span class="badge bg-primary px-3 py-2">HTML5</span>
+                        <span class="badge bg-primary px-3 py-2">CSS3</span>
+                        <span class="badge bg-info text-dark px-3 py-2">Bootstrap 5</span>
+                        <span class="badge bg-warning text-dark px-3 py-2">JavaScript (ES6+)</span>
+                        <span class="badge bg-secondary px-3 py-2">Responsive Web Design</span>
+                        <span class="badge bg-secondary px-3 py-2">UI/UX Implementation</span>
+                        <span class="badge bg-secondary px-3 py-2">Git &amp; GitHub</span>
+                    </div>
+                </div>
+
+                <!-- Featured Projects -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark border-start border-4 border-primary ps-2 mb-2">Key Projects</h5>
+                    <div class="mb-2">
+                        <strong class="text-dark">1. Student Management System:</strong>
+                        <p class="text-secondary small mb-1">A web application for tracking student grades, attendance, and details with real-time responsive interface.</p>
+                    </div>
+                    <div class="mb-2">
+                        <strong class="text-dark">2. Personal Developer Portfolio:</strong>
+                        <p class="text-secondary small mb-1">Modern, responsive portfolio website featuring fluid grid layouts, dark mode accents, and lightbox modals.</p>
+                    </div>
+                    <div>
+                        <strong class="text-dark">3. Responsive E-Commerce Showcase:</strong>
+                        <p class="text-secondary small mb-0">Online store interface featuring product catalogues, responsive product cards, and clean checkout flow.</p>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div>
+                    <h5 class="fw-bold text-dark border-start border-4 border-primary ps-2 mb-2">Languages</h5>
+                    <p class="text-secondary small mb-0">
+                        Arabic (Native) &bull; English (Professional Working Proficiency)
+                    </p>
+                </div>
+            </div>
+
+            <div class="modal-footer bg-light">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="window.print()">
+                    <svg class="app-icon me-1" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
+                    Print / Save PDF (طباعة أو حفظ)
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<!-- Local & CDN Bootstrap Scripts -->
+<script src="bootstrap.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Universal Responsive Navigation & Utilities
+    document.addEventListener('DOMContentLoaded', function () {
+        var toggler = document.getElementById('navTogglerBtn');
+        var navMenu = document.getElementById('navMenu');
+        var backToTop = document.getElementById('backToTop');
+        var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+        // Close mobile navbar smoothly when clicking any link
+        navLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                if (navMenu && navMenu.classList.contains('show')) {
+                    // Check if Bootstrap collapse is active
+                    if (window.bootstrap && bootstrap.Collapse) {
+                        var bsCollapse = bootstrap.Collapse.getInstance(navMenu);
+                        if (bsCollapse) {
+                            bsCollapse.hide();
+                            return;
+                        }
+                    }
+                    navMenu.classList.remove('show');
+                }
+            });
+        });
+
+        // Fallback toggle for environments where Bootstrap JS is not loaded
+        if (toggler && navMenu) {
+            toggler.addEventListener('click', function (e) {
+                if (!window.bootstrap || !window.bootstrap.Collapse) {
+                    e.preventDefault();
+                    navMenu.classList.toggle('show');
+                }
+            });
+        }
+
+        // Active link scroll spy
+        window.addEventListener('scroll', function () {
+            var scrollPos = window.scrollY + 120;
+            var sections = document.querySelectorAll('section[id]');
+            
+            sections.forEach(function (sec) {
+                var top = sec.offsetTop;
+                var height = sec.offsetHeight;
+                var id = sec.getAttribute('id');
+                var link = document.querySelector('.navbar-nav .nav-link[href="#' + id + '"]');
+                
+                if (link && scrollPos >= top && scrollPos < top + height) {
+                    navLinks.forEach(function (l) { l.classList.remove('active'); });
+                    link.classList.add('active');
+                }
+            });
+
+            // Back to top button visibility
+            if (backToTop) {
+                if (window.scrollY > 350) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            }
+        });
+
+        // Smooth scroll to top
+        if (backToTop) {
+            backToTop.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    });
+
+    // Contact form submission handler
+    function handleContactSubmit(e) {
+        e.preventDefault();
+        var alertBox = document.getElementById('contactAlert');
+        var submitBtn = document.getElementById('submitBtn');
+        var nameInput = document.getElementById('senderName');
+        var name = nameInput ? nameInput.value.trim() : 'Friend';
+
+        if (submitBtn) {
+            var originalContent = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span> Sending...';
+
+            setTimeout(function () {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalContent;
+                document.getElementById('contactForm').reset();
+
+                if (alertBox) {
+                    alertBox.innerHTML = '🎉 Thank you, <strong>' + (name || 'Friend') + '</strong>! Your message has been sent successfully.';
+                    alertBox.classList.remove('d-none');
+                    setTimeout(function () {
+                        alertBox.classList.add('d-none');
+                    }, 6000);
+                }
+            }, 800);
+        }
+    }
+</script>
+
+</body>
+</html>
