@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Eman - Student Results System</title>
+</head>
+<body>
+
+<script>
+
+class Student {
+
+    constructor(id, name, grades, attendance) {
+        this.id = id;
+        this.name = name;
+        this.grades = grades;
+        this.attendance = attendance;
+    }
+
+    calculateAverage() {
+        let total = this.grades.reduce((sum, grade) => sum + grade, 0);
+        return total / this.grades.length;
+    }
+
+    getGrade(average) {
+        if (average >= 90) {
+            return "A";
+        } else if (average >= 80) {
+            return "B";
+        } else if (average >= 70) {
+            return "C";
+        } else if (average >= 60) {
+            return "D";
+        } else if (average >= 50) {
+            return "E";
+        } else {
+            return "F";
+        }
+    }
+
+    getFinalResult(average) {
+        if (average >= 50 && this.attendance >= 75) {
+            return "ناجح";
+        } else {
+            return "يحتاج مراجعة";
+        }
+    }
+}
+
+
+// Students Data
+
+let studentsList = [
+    new Student(101, "Eman", [90, 85, 95], 90),
+    new Student(102, "Aya", [42, 45, 48], 80),
+    new Student(103, "Alaa", [70, 75, 80], 85),
+    new Student(104, "Boshra", [40, 44, 48], 70)
+];
+
+
+// Students Reports
+
+console.log("===== Students Results Report =====");
+
+studentsList.forEach(student => {
+
+    let average = student.calculateAverage();
+
+    console.log("Student Name:", student.name);
+    console.log("Average:", average);
+    console.log("Grade:", student.getGrade(average));
+    console.log("Final Result:", student.getFinalResult(average));
+    console.log("-----------------------------");
+
+});
+
+
+// Grace Committee - Filter
+
+let strugglingStudents = studentsList.filter(student => {
+    let average = student.calculateAverage();
+    return average >= 40 && average <= 49;
+});
+
+
+// Add 5 Grace Marks - Map
+
+let graceStudents = strugglingStudents.map(student => {
+
+    return {
+        id: student.id,
+        name: student.name,
+        oldAverage: student.calculateAverage(),
+        newAverage: student.calculateAverage() + 5
+    };
+
+});
+
+
+// Calculate Total New Averages - Reduce
+
+let totalGraceAverages = graceStudents.reduce((sum, student) => {
+    return sum + student.newAverage;
+}, 0);
+
+
+// Calculate Grace Average with Zero Protection
+
+let graceAverage = graceStudents.length > 0
+    ? totalGraceAverages / graceStudents.length
+    : 0;
+
+
+// Final Output
+
+console.log("===== Grace Committee Report =====");
+
+console.log("Students Who Received Grace Marks:");
+console.table(graceStudents);
+
+console.log("Average After Grace Marks:", graceAverage);
+
+</script>
+
+</body>
+</html>
